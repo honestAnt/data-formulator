@@ -6,6 +6,7 @@ import random
 import sys
 import os
 import mimetypes
+import openai
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('application/javascript', '.mjs')
 
@@ -162,8 +163,9 @@ def test_model():
         key = html.escape(f"{content['key']}".strip())
 
         print(content)
-
+        #此处修改
         client = get_client(endpoint, key)
+        # client = openai.OpenAI(api_key="ollama",base_url="http://localhost:11434/v1")
         model = html.escape(content['model'].strip())
 
         try:

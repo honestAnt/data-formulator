@@ -25,7 +25,8 @@ def get_client(endpoint, key):
 			azure_ad_token_provider=token_provider
 		)
 	elif endpoint == 'openai':
-		client = openai.OpenAI(api_key=key)
+		# client = openai.OpenAI(api_key=key)
+		client = openai.OpenAI(api_key="ollama", base_url="http://localhost:11434/v1")
 	else:
 		client = openai.AzureOpenAI(
 			azure_endpoint = endpoint,  

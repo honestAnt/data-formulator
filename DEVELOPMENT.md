@@ -79,7 +79,7 @@ How to set up your local machine.
     ```
     or 
     ```bash
-    python -m data_formulator
+    python -m data_formulator --port 8080
     ```
 
     Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

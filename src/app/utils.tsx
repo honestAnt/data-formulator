@@ -20,7 +20,8 @@ export interface PopupConfig {
 }
 
 export const appConfig: AppConfig = {
-    serverUrl:  process.env.NODE_ENV == "production" ? "./" : "http://127.0.0.1:5000/",
+    // serverUrl:  process.env.NODE_ENV == "production" ? "./" : "http://127.0.0.1:5000/",
+    serverUrl:  process.env.NODE_ENV == "production" ? "./" : "http://127.0.0.1:3001/",
 };
 
 export function assignAppConfig(config: AppConfig) {
