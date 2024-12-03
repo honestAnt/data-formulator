@@ -1,0 +1,12 @@
+FROM  megarobo-biolauto-docker.pkg.coding.net/hephaestus/docker-image/builder-data-formulator-cache:python3.9-v1
+
+ENV PROJECT_ENV=production
+
+# 打包
+WORKDIR /code
+COPY sleep.py /code
+
+# 安装依赖
+RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+entrypoint ["python","/code/sleep.py"]

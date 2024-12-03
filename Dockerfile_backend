@@ -9,6 +9,6 @@ WORKDIR /code
 ADD requirements.txt pyproject.toml README.md LICENSE MANIFEST.in /code/
 COPY py-src/ /code/py-src/
 
-RUN ls -alh /code/
 # 安装依赖
-RUN pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple && pip install . -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple && pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
