@@ -1,0 +1,14 @@
+FROM  python:3.9.7-slim
+
+ENV PROJECT_ENV=production
+
+# 打包
+WORKDIR /code
+# 仅缓存业务的包
+#ADD main/package.json /code/
+ADD requirements.txt pyproject.toml README.md LICENSE MANIFEST.in /code/
+COPY py-src/ /code/py-src/
+
+RUN ls -alh /code/
+# 安装依赖
+RUN pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple && pip install . -i https://pypi.tuna.tsinghua.edu.cn/simple

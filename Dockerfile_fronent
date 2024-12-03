@@ -1,0 +1,23 @@
+FROM  megarobo-biolauto-docker.pkg.coding.net/hephaestus/docker-image/node18-npm:builder-linux
+
+ENV PROJECT_ENV=production
+
+# 打包admin
+WORKDIR /code
+RUN rm -rf node_modules
+RUN rm -rf /code/
+# 仅缓存业务的包
+#ADD main/package.json /code/
+ADD . /code/
+RUN #pnpm install
+# 注意先本地 yarn install，然后再构建镜像
+RUN  npm set strict-ssl false && yarn install --registry=https://registry.npmmirror.com
+
+RUN mkdir -p /tmp/p1 && mv /code/node_modules /tmp/p1/
+# 删除多余的文件和缓存包
+RUN rm -rf /code/**
+# 压缩目录，减少包体积
+RUN tar -zcvf node_modules.tar.gz /tmp && rm -rf /tmp
+# 使用的地方解压
+#RUN tar -zxvf /code/node_modules.tar.gz -C /tmp && mkdir -p /code/main && mv /tmp/tmp/p1/node_modules /code/  && mv /tmp/tmp/p2/node_modules /code/main/
+

@@ -10,7 +10,8 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: path.join(__dirname, 'py-src', 'data_formulator', "dist"),
+    // outDir: path.join(__dirname, 'py-src', 'data_formulator', "dist"),
+    outDir: path.join(__dirname, "dist"),
     rollupOptions: {
       output: {
         entryFileNames: `DataFormulator.js`,  // specific name for the main JS bundle

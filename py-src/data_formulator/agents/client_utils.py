@@ -12,6 +12,8 @@ def get_client(endpoint, key):
 
 	endpoint = os.getenv("ENDPOINT") if endpoint == "default" else endpoint
 
+	# client = openai.OpenAI(api_key="ollama", base_url="http://localhost:11434/v1")
+
 	if key is None or key == "":
 		# using azure keyless access method
 		token_provider = get_bearer_token_provider(
@@ -26,11 +28,11 @@ def get_client(endpoint, key):
 		)
 	elif endpoint == 'openai':
 		# client = openai.OpenAI(api_key=key)
-		client = openai.OpenAI(api_key="ollama", base_url="http://localhost:11434/v1")
+		client = openai.OpenAI(api_key="ollama", base_url= os.getenv("ENDPOINT"))
 	else:
 		client = openai.AzureOpenAI(
-			azure_endpoint = endpoint,  
-			api_key=key,  
+			azure_endpoint = endpoint,
+			api_key=key,
 			api_version="2024-02-15-preview"
 		)
 	return client
